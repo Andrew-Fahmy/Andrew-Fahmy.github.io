@@ -1,0 +1,21 @@
+#landing-image {
+    color: white;
+    background-image: url("images/sunset2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#nav a:not(.active):hover {
+    color: rgb(0, 255, 0);
+}
+
+.clear-text {
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.5);
+    text-shadow: .1rem .1rem .1rem rgba(128, 128, 128, 0.3);
+}
+
+.active {
+    
+}
