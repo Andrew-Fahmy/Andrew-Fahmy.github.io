@@ -3,6 +3,30 @@ section {
     /* box-shadow: 0 10px 5px #000; */
 }
 
+.navbar {
+    padding: 0;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 400ms ease-in-out;
+    color: #dbdbdb;
+    margin: 1.5rem;
+    border-bottom: .2rem solid transparent;
+}
+
+.nav-link:hover {
+    color: #dbdbdb;
+    border-bottom: .2rem solid #dbdbdb;
+}
+
+.active {
+    color: #ffffff;
+    border-bottom: .2rem solid #ffffff;
+    font-weight: 600;
+}
+
 #landing {
     overflow: hidden;
     padding: 40vh 0rem;
@@ -23,6 +47,12 @@ section {
     overflow: hidden;
 }
 
+.clear-text {
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: .1rem .1rem .1rem rgba(128, 128, 128, .9);
+}
+
 #about-me {
     background-color: #ffffff;
 }
@@ -40,21 +70,7 @@ section {
     color: #ffffff;
 }
 
-#nav a:not(.active):hover {
-    color: rgb(0, 255, 0);
-}
-
 footer {
     background-color: #15303f;
     height: 3000px;
-}
-
-.clear-text {
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.8);
-    text-shadow: .1rem .1rem .1rem rgba(128, 128, 128, .9);
-}
-
-.active {
-    
 }
