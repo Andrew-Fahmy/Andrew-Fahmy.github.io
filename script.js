@@ -1,26 +1,26 @@
-let bg = document.getElementById("landing");
-
-let parallax_obj = document.getElementsByClassName("parallax");
-
-// offset = 0;
-let cursor = {"x": 0, "y": 0};
+let parallax_objs = document.getElementsByClassName("parallax");
+// let perspective_objs = document.getElementsByClassName("perspective");
+// let cursor = {"x": 0, "y": 0};
 
 
-bg.addEventListener("mousemove", mouse_update);
+// window.addEventListener("mousemove", mouse_update);
 
-function mouse_update(e) {
-    cursor.x = e.x;
-    cursor.y = e.y;
-}
+// function mouse_update(e) {
+//     cursor.x = e.x / window.innerWidth * 2 - 1;
+//     cursor.y = e.y / window.innerHeight * 2 - 1;
+// }
 
 function loop() {
-    for(let i = 0; i < parallax_obj.length; i++) {
-        parallax_obj[i].style.transform = "translate3d(0, " + document.documentElement.scrollTop * parallax_obj[i].dataset.speed + "px, 0)";
+    for(let i = 0; i < parallax_objs.length; i++) {
+        parallax_objs[i].style.transform = "translate3d(0, " + document.documentElement.scrollTop * parallax_objs[i].dataset.speed + "px, 0)";
     }
-    // bg.style.backgroundPositionX = (cursor.x / window.innerWidth) * -50 + "px";
-    // bg.style.backgroundPositionY = (cursor.y / window.innerHeight) * -50 + "px";
+    // for(let i = 0; i < perspective_objs.length; i++) {
+    //     let left = cursor.x * perspective_objs[i].dataset.speed;
+    //     let top = cursor.y * perspective_objs[i].dataset.speed;
+    //     perspective_objs[i].style.transform = "translate3d(" + left + "%, " + top + "%, 0)";
+    // }
     requestAnimationFrame(loop);
-    // console.log(bg.style.backgroundPositionX);
+    // console.log(cursor.x);
 }
 
 loop();
