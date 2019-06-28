@@ -1,0 +1,30 @@
+@import "custom-variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+section {
+    padding: 4rem 1rem;
+}
+
+#hero {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+    overflow: hidden;
+}
+
+#hero-image {
+    background-image: url("../images/sunset.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: -10;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+footer {
+    background-color: $cyan;
+    height: 3000px;
+}

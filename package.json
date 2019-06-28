@@ -1,0 +1,23 @@
+{
+  "name": "andrew-fahmy.github.io",
+  "version": "1.0.0",
+  "description": "Personal website",
+  "main": "index.js",
+  "scripts": {
+    "css": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 src/scss/custom-styles.scss dist/css/main.css",
+    "css:watch": "npm run css && npm run css -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrew-Fahmy/andrew-fahmy.github.io.git"
+  },
+  "author": "Andrew Fahmy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrew-Fahmy/andrew-fahmy.github.io/issues"
+  },
+  "homepage": "https://github.com/Andrew-Fahmy/andrew-fahmy.github.io#readme",
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}
