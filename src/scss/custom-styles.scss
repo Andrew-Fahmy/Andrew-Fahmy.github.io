@@ -2,6 +2,12 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 
+.navbar {
+    @include media-breakpoint-down(sm) {
+        background-color: $dark;
+    }
+}
+
 section {
     padding: 4rem 1rem;
 }

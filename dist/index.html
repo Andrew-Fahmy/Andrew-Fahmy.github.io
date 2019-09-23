@@ -10,18 +10,18 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark">
         <!-- <div class="container"> -->
-            <!-- <a href="" class="navbar-brand">Andrew Fahmy</a> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-stretch" id="nav">
-                <div class="navbar-nav ml-auto">
-                    <a href="" class="nav-link active pl-md-3 pr-md-3">Home</a>
-                    <a href="" class="nav-link pl-md-3 pr-md-3">Contact</a>
-                    <a href="" class="nav-link pl-md-3 pr-md-3">Projects</a>
-                </div>
+        <!-- <a href="" class="navbar-brand">Andrew Fahmy</a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-stretch" id="nav">
+            <div class="navbar-nav ml-auto">
+                <a href="" class="nav-link active pl-md-3 pr-md-3">Home</a>
+                <a href="" class="nav-link pl-md-3 pr-md-3">Contact</a>
+                <a href="" class="nav-link pl-md-3 pr-md-3">Projects</a>
             </div>
+        </div>
         <!-- </div> -->
     </nav>
     <section id="hero" class="">
@@ -36,7 +36,9 @@
     <section id="about" class="bg-dark text-light">
         <div class="container">
             <h1>About me</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius similique soluta magni vitae, saepe harum adipisci dolorem, beatae, iusto et quisquam. Maxime numquam recusandae inventore consequuntur itaque. Repellat, laudantium aliquid.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius similique soluta magni vitae, saepe harum
+                adipisci dolorem, beatae, iusto et quisquam. Maxime numquam recusandae inventore consequuntur itaque.
+                Repellat, laudantium aliquid.</p>
         </div>
     </section>
     <section id="projects" class="bg-light text-dark">
@@ -67,6 +69,31 @@
         <section id="contact" class="bg-dark text-light">
             <div class="container">
                 <h1>Contact</h1>
+                <div class="row">
+                    <div class="col">
+                        <form action="mailto:andrewj.fahmy@gmail.com" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                    placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="3"
+                                    placeholder="Enter message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <div class="row"><a href="https://github.com/Andrew-Fahmy">Github</a></div>
+                        <div class="row"><a href="https://codepen.io/Andrew-Fahmy">CodePen</a></div>
+                    </div>
+                </div>
             </div>
         </section>
 
