@@ -1,0 +1,213 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Particle Field</title>
+</head>
+
+<body>
+    <script src="vector.js"></script>
+    <script>
+        //changable variables
+        let max_particles = 5000,
+            margin = 50,
+            particle_speed = 1,
+            connections = false;
+
+        let G = 6.67 * Math.pow(10, -11), //gravity constant
+            particles = [],
+            emitters = [],
+            attractors = [],
+            canvas = document.createElement("canvas"),
+            ctx = canvas.getContext("2d"),
+            color = 0;
+
+        window.addEventListener("load", load);
+        window.addEventListener("resize", resize);
+
+        document.body.appendChild(canvas);
+        document.body.style.margin = 0;
+        document.body.style.overflow = "hidden";
+        canvas.style.display = "block";
+
+        function load() {
+            resize();
+            emitters.push(new emitter(new vector(canvas.width / 4, canvas.height / 2)));
+            // setInterval(game, 1000);
+            requestAnimationFrame(game);
+        }
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        document.addEventListener("click", function (e) {
+            //new attractor(e.clientX, e.clientY, 100);
+        });
+
+        document.addEventListener("click", function (e) {
+            attractors.push(new attractor(new vector(e.clientX, e.clientY), 8 * Math.pow(10, 12)));
+        });
+
+        document.addEventListener("mousemove", function (e) {
+            for (var i = 0; i < attractors.length; i++) {
+                //attractors[i].pos.x = e.x;
+                //attractors[i].pos.y = e.y;
+            }
+        });
+
+        class particle {
+            constructor(position, velocity, radius, color) {
+                this.position = position;
+                this.velocity = velocity;
+                this.acceleration = new vector(0, 0);
+                this.radius = radius;
+                this.color = color;
+            }
+
+            update() {
+                this.velocity.add(this.acceleration);
+                this.position.add(this.velocity);
+                this.acceleration.scale(0); //reset the acceleration every frame
+
+                if (
+                    this.position.x < -margin ||
+                    this.position.x > canvas.width + margin ||
+                    this.position.y < -margin ||
+                    this.position.y > canvas.height + margin
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            draw(points = []) {
+                // console.log(points);
+                ctx.beginPath();
+                ctx.arc(
+                    this.position.x,
+                    this.position.y,
+                    this.radius,
+                    0,
+                    2 * Math.PI,
+                    false
+                );
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                if (connections) {
+                    for (var i = 0; i < points.length; i++) {
+                        let difference = new vector(this.position.x - points[i].position.x, this.position.y - points[i].position.y);
+                        if (difference.magnitude < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(this.position.x, this.position.y);
+                            ctx.lineTo(points[i].position.x, points[i].position.y);
+                            var op = (1 - (difference.magnitude / 100));
+                            // console.log(op);
+                            ctx.strokeStyle = "rgba(255, 255, 255, " + op + ")";
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            gravity(a) {
+                var force = new vector(
+                    a.position.x - this.position.x,
+                    a.position.y - this.position.y
+                );
+                var distancesq = force.magnitude_squared;
+                var strength = this.radius * a.mass / distancesq * G; //mass1 * mass2 / distance^(squared) * G
+                force.normalize();
+                if (strength > 0.1) {
+                    //strength = .1;
+                }
+                force.scale(strength);
+                if (distancesq < 1600) {
+                    force.scale(0);
+                }
+                this.acceleration.add(force);
+            }
+        }
+
+        function emitter(position) {
+            this.position = position;
+
+            this.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.position.x, this.position.y, 5, 0, 2 * Math.PI, false);
+                ctx.fillStyle = "blue";
+                ctx.fill();
+            };
+        }
+
+        function attractor(position, mass) {
+            this.position = position;
+            this.mass = mass;
+
+            this.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.position.x, this.position.y, 4, 0, 2 * Math.PI, false);
+                ctx.fillStyle = "red";
+                ctx.fill();
+            };
+        }
+
+        function game() {
+            //clear canvas
+            ctx.fillStyle = "rgba(0, 0, 0, 1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            if (connections) {
+                let quad = new quadtree(new vector(), new vector(canvas.width, canvas.height));
+                for (let i = 0; i < particles.length; i++) {
+                    quad.insert(particles[i]);
+                }
+            }
+            // console.log(quad);
+            //update/draw all particles
+            for (let i = 0; i < particles.length; i++) {
+                for (var j = 0; j < attractors.length; j++) {
+                    particles[i].gravity(attractors[j]);
+                }
+
+                if (particles[i].update(i)) {
+                    particles.splice(i, 1);
+                    i--;
+                } else {
+                    if (connections) {
+                        let size = new vector(1, 1);
+                        size.scale(200);
+                        let pos = new vector(particles[i].position.x - size.x / 2, particles[i].position.y - size.y / 2);
+                        particles[i].draw(quad.query(pos, size));
+                    } else {
+                        particles[i].draw();
+                    }
+                }
+            }
+
+            //update/draw all emitters
+            for (let i = 0; i < emitters.length; i++) {
+                emitters[i].draw();
+                if (particles.length < max_particles) {
+                    let position = new vector(emitters[i].position.x, emitters[i].position.y);
+                    let velocity = new vector(Math.random() + 1, Math.random() - .5);
+                    velocity.normalize();
+                    velocity.scale(particle_speed);
+
+                    particles.push(new particle(position, velocity, 1, "white"));
+                }
+            }
+
+            //update/draw all attractors
+            for (let i = 0; i < attractors.length; i++) {
+                attractors[i].draw();
+            }
+            requestAnimationFrame(game);
+        }
+    </script>
+</body>
+
+</html>

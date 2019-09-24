@@ -18,8 +18,8 @@
         <div class="collapse navbar-collapse justify-content-stretch" id="nav">
             <div class="navbar-nav ml-auto">
                 <a href="" class="nav-link active pl-md-3 pr-md-3">Home</a>
-                <a href="" class="nav-link pl-md-3 pr-md-3">Contact</a>
-                <a href="" class="nav-link pl-md-3 pr-md-3">Projects</a>
+                <a href="#projects" class="nav-link pl-md-3 pr-md-3">Projects</a>
+                <a href="#contact" class="nav-link pl-md-3 pr-md-3">Contact</a>
             </div>
         </div>
         <!-- </div> -->
@@ -36,9 +36,12 @@
     <section id="about" class="bg-dark text-light">
         <div class="container">
             <h1>About me</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius similique soluta magni vitae, saepe harum
-                adipisci dolorem, beatae, iusto et quisquam. Maxime numquam recusandae inventore consequuntur itaque.
-                Repellat, laudantium aliquid.</p>
+            <p>
+                My name is Andrew Fahmy. I am an avid programmer that enjoys everything from fitness to drone racing. I
+                am currently a full time student at Iowa State University studying Computer Science. This website hosts
+                some of the web based projects that I have done as well as contains ways to contact me. Thanks for
+                checking it out!
+            </p>
         </div>
     </section>
     <section id="projects" class="bg-light text-dark">
@@ -48,9 +51,10 @@
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">first card</h4>
-                            <p class="card-text">the first card</p>
-                            <a href="#" class="btn btn-outline-primary">Live demo</a>
+                            <h4 class="card-title">Particle Field</h4>
+                            <p class="card-text">This is a particle system that uses the actual gravity equation as well
+                                as vectors to create a particle field. Simply click to add points of gravity.</p>
+                            <a href="projects/particleField.html" class="btn btn-outline-primary">Live demo</a>
                         </div>
                     </div>
                 </div>
@@ -68,30 +72,29 @@
     <footer>
         <section id="contact" class="bg-dark text-light">
             <div class="container">
-                <h1>Contact</h1>
                 <div class="row">
-                    <div class="col">
-                        <form action="mailto:andrewj.fahmy@gmail.com" method="POST">
+                    <div class="col-sm" id="contact-form">
+                        <h1>Contact Me</h1>
+                        <form class="" action="mailto:andrewj.fahmy@gmail.com" method="POST">
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                                <input type="text" class="form-control" id="name" placeholder="Name">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                                    placeholder="Enter email">
+                                    placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea class="form-control" id="message" rows="3"
-                                    placeholder="Enter message"></textarea>
+                                <textarea class="form-control" id="message" rows="3" placeholder="Message"></textarea>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary">Submit</button>
                         </form>
                     </div>
-                    <div class="col">
-                        <div class="row"><a href="https://github.com/Andrew-Fahmy">Github</a></div>
-                        <div class="row"><a href="https://codepen.io/Andrew-Fahmy">CodePen</a></div>
+                    <div class="col-sm" id="other-contact">
+                        <h2>Or check me out at</h2>
+                        <div class="row">
+                            <div class="col"><a href="https://github.com/Andrew-Fahmy">Github</a></div>
+                            <div class="col"><a href="https://codepen.io/Andrew-Fahmy">CodePen</a></div>
+                        </div>
                     </div>
                 </div>
             </div>

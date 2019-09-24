@@ -3,8 +3,9 @@
 
 
 .navbar {
-    @include media-breakpoint-down(sm) {
-        background-color: $dark;
+    background-color: $dark;
+    @include media-breakpoint-up(sm) {
+        background-color: transparent;
     }
 }
 
@@ -31,7 +32,18 @@ section {
     overflow: hidden;
 }
 
-footer {
-    background-color: $cyan;
-    height: 3000px;
+#contact-form {
+    border: 0;
+    padding: 1rem;
+    @include media-breakpoint-up(sm) {
+        border-right: 1px solid $cyan;
+        padding-right: 2rem;
+    }
+}
+
+#other-contact {
+    padding: 1rem;
+    @include media-breakpoint-up(sm) {
+        padding-left: 2rem;
+    }
 }
